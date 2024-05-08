@@ -13,31 +13,25 @@ const initialDistance = 0; // distance (km)
 const remainingFuel = 5000; // remaining fuel (kg)
 const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
 
-//Calculating new velocity based on acceleration
-function calcNewVel(velocity, acceleration, time) {
-  if (typeof velocity !== "number"|| typeof acceleration !== "number" || typeof time !== "number") {
-    throw new Error("Invalid input. Please insert numerical values for velocity, acceleration, and time.");
-  }
-  return velocity + (acceleration * time);
-}
-
-
 //Calculations
-const d2 = d + (vel*time) //calcultes new distance
-const rf = fbr*time //calculates remaining fuel
-const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+const newDistance = initialDistance + velocity * time; //calcultes new distance
+const remainingFuelAmount = fuelBurnRate * time; //calculates remaining fuel
+const newVelocity = calcNewVel(acceleration, velocity, time); //calculates new velocity based on acceleration
 
 // Pick up an error with how the function below is called and make it robust to such errors
-calcNewVel = (vel, acc, time) => { 
-  return vel + (acc*time)
+function calcNewVel(velocity, acceleration, time) {
+  if (
+    typeof velocity !== "number" ||
+    typeof acceleration !== "number" ||
+    typeof time !== "number"
+  ) {
+    throw new Error(
+      "Invalid input. Please insert numerical values for velocity, acceleration, and time."
+    );
+  }
+  return newVelocity + (acceleration * time);
 }
 
 console.log(`Corrected New Velocity: ${vel2} km/h`);
 console.log(`Corrected New Distance: ${d2} km`);
 console.log(`Corrected Remaining Fuel: ${rf} kg`);
-
-
-
-
-
-
