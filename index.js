@@ -25,7 +25,7 @@ function calcNewVel(velocity, acceleration, time) {
     );
   }
   //converting m/s^2 to km/h^2
-  const acceleration_km_per_hour_squared = acceleration * 3.6;
+  const acceleration_km_per_hour_squared = acceleration * (3600/1000);
   return velocity + acceleration_km_per_hour_squared * (time);
 }
 
