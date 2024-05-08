@@ -24,15 +24,15 @@ function calcNewVel(velocity, acceleration, time) {
       "Invalid input. Please insert numerical values for velocity, acceleration, and time."
     );
   }
-  return velocity + (acceleration * time) * (1 / 3600);
+  //converting m/s^2 to km/h^2
+  const acceleration_km_per_hour_squared = acceleration * 3.6;
+  return velocity + acceleration_km_per_hour_squared * (time);
 }
 
 //Calculations
-const newDistance = initialDistance + velocity * (time/3600); //calcultes new distance
+const newVelocity = calcNewVel(velocity, acceleration, time).toFixed(0); //calculates new velocity based on acceleration
+const newDistance = initialDistance + velocity * (time / 3600); //calcultes new distance
 const remainingFuelAmount = remainingFuel - fuelBurnRate * time; //calculates remaining fuel
-const newVelocity = calcNewVel(acceleration, velocity, time).toFixed(0); //calculates new velocity based on acceleration
-
-
 
 console.log(`Corrected New Velocity: ${newVelocity} km/h`);
 console.log(`Corrected New Distance: ${newDistance} km`);
