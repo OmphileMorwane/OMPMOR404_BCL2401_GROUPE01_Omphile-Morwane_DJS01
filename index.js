@@ -13,7 +13,16 @@ const initialDistance = 0; // distance (km)
 const remainingFuel = 5000; // remaining fuel (kg)
 const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
 
+//Calculating new velocity based on acceleration
+function calcNewVel(velocity, acceleration, time) {
+  if (typeof velocity !== "number"|| typeof acceleration !== "number" || typeof time !== "number") {
+    throw new Error("Invalid input. Please insert numerical values for velocity, acceleration, and time.");
+  }
+  return velocity + (acceleration * time);
+}
 
+
+//Calculations
 const d2 = d + (vel*time) //calcultes new distance
 const rf = fbr*time //calculates remaining fuel
 const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
