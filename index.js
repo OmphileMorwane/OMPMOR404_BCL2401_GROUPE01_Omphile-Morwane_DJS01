@@ -24,13 +24,13 @@ function calcNewVel(velocity, acceleration, time) {
       "Invalid input. Please insert numerical values for velocity, acceleration, and time."
     );
   }
-  return velocity + (acceleration * time);
+  return velocity + (acceleration * time) * (1 / 3600);
 }
 
 //Calculations
-const newDistance = initialDistance + velocity * time; //calcultes new distance
-const remainingFuelAmount = fuelBurnRate * time; //calculates remaining fuel
-const newVelocity = calcNewVel(acceleration, velocity, time); //calculates new velocity based on acceleration
+const newDistance = initialDistance + velocity * (time/3600); //calcultes new distance
+const remainingFuelAmount = remainingFuel - fuelBurnRate * time; //calculates remaining fuel
+const newVelocity = calcNewVel(acceleration, velocity, time).toFixed(0); //calculates new velocity based on acceleration
 
 
 
