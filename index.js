@@ -13,11 +13,6 @@ const initialDistance = 0; // distance (km)
 const remainingFuel = 5000; // remaining fuel (kg)
 const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
 
-//Calculations
-const newDistance = initialDistance + velocity * time; //calcultes new distance
-const remainingFuelAmount = fuelBurnRate * time; //calculates remaining fuel
-const newVelocity = calcNewVel(acceleration, velocity, time); //calculates new velocity based on acceleration
-
 // Pick up an error with how the function below is called and make it robust to such errors
 function calcNewVel(velocity, acceleration, time) {
   if (
@@ -29,9 +24,16 @@ function calcNewVel(velocity, acceleration, time) {
       "Invalid input. Please insert numerical values for velocity, acceleration, and time."
     );
   }
-  return newVelocity + (acceleration * time);
+  return velocity + (acceleration * time);
 }
 
-console.log(`Corrected New Velocity: ${vel2} km/h`);
-console.log(`Corrected New Distance: ${d2} km`);
-console.log(`Corrected Remaining Fuel: ${rf} kg`);
+//Calculations
+const newDistance = initialDistance + velocity * time; //calcultes new distance
+const remainingFuelAmount = fuelBurnRate * time; //calculates remaining fuel
+const newVelocity = calcNewVel(acceleration, velocity, time); //calculates new velocity based on acceleration
+
+
+
+console.log(`Corrected New Velocity: ${newVelocity} km/h`);
+console.log(`Corrected New Distance: ${newDistance} km`);
+console.log(`Corrected Remaining Fuel: ${remainingFuelAmount} kg`);
