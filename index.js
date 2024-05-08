@@ -14,6 +14,7 @@ const remainingFuel = 5000; // remaining fuel (kg)
 const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
 
 // Pick up an error with how the function below is called and make it robust to such errors
+// Function to calculate new velocity based on acceleration
 function calcNewVel(velocity, acceleration, time) {
   if (
     typeof velocity !== "number" ||
@@ -25,8 +26,8 @@ function calcNewVel(velocity, acceleration, time) {
     );
   }
   //converting m/s^2 to km/h^2
-  const acceleration_km_per_hour_squared = acceleration * (3600/1000);
-  return velocity + acceleration_km_per_hour_squared * (time);
+  const convertedAcceleration = acceleration * (3600/1000);
+  return velocity + convertedAcceleration * (time);
 }
 
 //Calculations
