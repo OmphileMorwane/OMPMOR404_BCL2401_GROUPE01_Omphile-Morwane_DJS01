@@ -6,12 +6,12 @@
  */
 
 // Given Parameters
-const velocity = 10000; // velocity (km/h)
-const acceleration = 3; // acceleration (m/s^2)
-const time = 3600; // seconds (1 hour)
-const initialDistance = 0; // distance (km)
-const remainingFuel = 5000; // remaining fuel (kg)
-const fuelBurnRate = 0.5; // fuel burn rate (kg/s)
+const velocity = {value:10000, unit: "km/h"}; // velocity (km/h)
+const acceleration = {value:3, unit:"m/s^2"}; // acceleration (m/s^2)
+const time = {value:3600, unit:"seconds"}; // seconds (1 hour)
+const initialDistance ={value:0, unit: "km"}; // distance (km)
+const remainingFuel = {value:5000, unit: "kg"}; // remaining fuel (kg)
+const fuelBurnRate = {value:0.5, unit: "kg/s"}; // fuel burn rate (kg/s)
 
 // Pick up an error with how the function below is called and make it robust to such errors
 // Function to calculate new velocity based on acceleration
@@ -32,10 +32,18 @@ function calcNewVel(velocity, acceleration, time) {
   return newVelocity;
 }
 
+if (velocity.unit !== "km/h") throw new Error("Invalid units! Please use 'km/h' for velocity");
+if (acceleration.unit !== "m/s^2") throw new Error("Invalid units! Please use 'm/s^2' for acceleration");
+if (time.unit !== "seconds") throw new Error("Invalid units! Please use 'seconds' for time");
+if (initialDistance.unit !== "km") throw new Error("Invalid units! Please use 'km' for initial distance");
+if (remainingFuel.unit !== "kg") throw new Error("Invalid units! Please use 'kg' for remaining fuel");
+if (fuelBurnRate.unit !== "kg/s") throw new Error("Invalid units! Please use 'kg/s' for fuel burn rate");
+
+
 //Calculations
-const newVelocity = calcNewVel(velocity, acceleration, time).toFixed(0); //calculates new velocity based on acceleration
-const newDistance = initialDistance + velocity * (time / 3600); //calcultes new distance
-const remainingFuelAmount = remainingFuel - fuelBurnRate * time; //calculates remaining fuel
+const newVelocity = calcNewVel(velocity.value, acceleration.value, time.value).toFixed(0); //calculates new velocity based on acceleration
+const newDistance = initialDistance.value + velocity.value * (time.value / 3600); //calcultes new distance
+const remainingFuelAmount = remainingFuel.value - fuelBurnRate.value * time.value; //calculates remaining fuel
 
 console.log(`Corrected New Velocity: ${newVelocity} km/h`);
 console.log(`Corrected New Distance: ${newDistance} km`);
