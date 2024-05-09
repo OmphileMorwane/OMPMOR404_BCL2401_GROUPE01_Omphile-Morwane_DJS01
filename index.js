@@ -14,8 +14,10 @@ const remainingFuel = {value:5000, unit: "kg"}; // remaining fuel (kg)
 const fuelBurnRate = {value:0.5, unit: "kg/s"}; // fuel burn rate (kg/s)
 
 // Pick up an error with how the function below is called and make it robust to such errors
+
 // Function to calculate new velocity based on acceleration
 function calcNewVel(velocity, acceleration, time) {
+  //checking if inputs are numbers
   if (
     typeof velocity !== "number" ||
     typeof acceleration !== "number" ||
@@ -32,6 +34,7 @@ function calcNewVel(velocity, acceleration, time) {
   return newVelocity;
 }
 
+//Checking if units are correct
 if (velocity.unit !== "km/h") throw new Error("Invalid units! Please use 'km/h' for velocity");
 if (acceleration.unit !== "m/s^2") throw new Error("Invalid units! Please use 'm/s^2' for acceleration");
 if (time.unit !== "seconds") throw new Error("Invalid units! Please use 'seconds' for time");
@@ -45,6 +48,7 @@ const newVelocity = calcNewVel(velocity.value, acceleration.value, time.value).t
 const newDistance = initialDistance.value + velocity.value * (time.value / 3600); //calcultes new distance
 const remainingFuelAmount = remainingFuel.value - fuelBurnRate.value * time.value; //calculates remaining fuel
 
+//Displaying results
 console.log(`Corrected New Velocity: ${newVelocity} km/h`);
 console.log(`Corrected New Distance: ${newDistance} km`);
 console.log(`Corrected Remaining Fuel: ${remainingFuelAmount} kg`);
