@@ -26,8 +26,10 @@ function calcNewVel(velocity, acceleration, time) {
     );
   }
   //converting m/s^2 to km/h^2
-  const convertedAcceleration = acceleration * (3600/1000);
-  return velocity + convertedAcceleration * (time);
+  const convertedAcceleration = acceleration * ((3600/1000)*(3600));
+  const newVelocity = velocity + convertedAcceleration * (time/3600);
+  
+  return newVelocity;
 }
 
 //Calculations
